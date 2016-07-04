@@ -8,7 +8,7 @@ To serve and receive audio and video simultaneously from a Raspberry Pi.
 
 # Gotcha
 
-This implementation only works for LAN. Using services like [weaved](https://www.weaved.com/) or port-forwarding will get you going for internet streaming too - but beware *it is very bandwidth intensive*. You will have to play around with the fps and quality a fair amount to get a stable stream.
+This implementation only works over LAN. Using services like [weaved](https://www.weaved.com/) or port-forwarding will get you going for internet streaming too - but beware *it is very bandwidth intensive*. You will have to play around with the fps and quality a fair amount to get a stable stream.
 
 ## Prerequisites:
   * Python 2.7 for UDPcast on the Raspberry Pi.
