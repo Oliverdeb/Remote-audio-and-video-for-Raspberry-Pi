@@ -11,11 +11,10 @@ def get_ip_via_udp():
 	MCAST_PORT = 5007
 
 	# open udp socket
-	# socket code from python 
+	# socket code from python docs page
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-	sock.bind((MCAST_GRP, MCAST_PORT))  # use MCAST_GRP instead of '' to listen only
-	                             		# to MCAST_GRP, not all groups on MCAST_PORT
+	sock.bind((MCAST_GRP, MCAST_PORT))  
 	mreq = struct.pack("4sl", socket.inet_aton(MCAST_GRP), socket.INADDR_ANY)
 
 	sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
