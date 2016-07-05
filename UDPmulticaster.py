@@ -4,14 +4,14 @@ import subprocess
 import socket
 import time
 import re
-#@reboot /usr/bin/weavedstart.sh
 
 def main():
 	
 	# keep looping until Raspi has been allocated an IPv4 address
-	while not has_ipv4_address():	
-		time.sleep(10)
-	multicast()
+	while True:
+		while not has_ipv4_address():	
+			time.sleep(10)
+		multicast()
 
 def multicast():	
 	""" UDP multicasts every 5 seconds to the multicast group while there is a valid IPv4 address. """
@@ -20,10 +20,10 @@ def multicast():
 
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 	sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 2)
+	# mutlicast every 5 seonds while there is a valip IP.
 	while has_ipv4_address():
 		sock.sendto("Alive", (MCAST_GRP, MCAST_PORT))
 		time.sleep(5)
-	main()
 
 def has_ipv4_address():
 	""" This function checks to see if the Raspi has been allocated an IPv4 address"""
