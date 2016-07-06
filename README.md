@@ -4,7 +4,7 @@ This project was completed during a 4-week internship.
 
 ## Aim
 
-To serve and receive audio and video simultaneously from a Raspberry Pi using the Raspberry Pi camera module and a USB headset attached to the Pi.
+To send and receive audio and video simultaneously from a Raspberry Pi using the Raspberry Pi camera module and a USB headset attached to the Pi ( all done by UV4L ). I was to implement a way to start the stream without knowing the IP of the Raspberry Pi before hand. 
 
 ## Gotcha
 
@@ -43,5 +43,9 @@ This implementation only works over LAN. Using services like [weaved](https://ww
    ```
    
    This will just make it easier to stream to the Raspberry Pi as you won't have to know the IP of the Raspberry Pi beforehand, you can alternatively just set a static IP if you have router access.
-  5. Reboot and your Pi should be accessible by using the *startstream.py* script.
-  
+  5. Reboot and your Pi should be accessible by using the *startstream.py* script. 
+ 
+    ```shell
+   python startstream.py
+   ```
+  Simply follow the on-screen menu to start the stream or set a static IP.
