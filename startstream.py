@@ -7,11 +7,12 @@ import os
 import subprocess
 
 def get_ip_via_udp():
+	""" Returns the IP of the Raspberry Pi once a UDP multicast has been received from it. """
 	MCAST_GRP = '224.1.1.1'
 	MCAST_PORT = 5007
 
 	# open udp socket
-	# socket code from python docs page
+	# socket code from python wiki: https://wiki.python.org/moin/UdpCommunication
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 	sock.bind((MCAST_GRP, MCAST_PORT))  
