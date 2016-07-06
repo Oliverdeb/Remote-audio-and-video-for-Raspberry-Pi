@@ -15,6 +15,7 @@ def main():
 
 def multicast():	
 	""" UDP multicasts every 5 seconds to the multicast group while there is a valid IPv4 address. """
+	# UDP code from https://wiki.python.org/moin/UdpCommunication
 	MCAST_GRP = '224.1.1.1'
 	MCAST_PORT = 5007
 
