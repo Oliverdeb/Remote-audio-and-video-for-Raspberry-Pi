@@ -17,6 +17,7 @@ This implementation only works over LAN. Using services like [weaved](https://ww
   * avahi-daemon installed on Raspberry Pi ( not mandatory, but can make things easier, used to automatically resolve raspberrypi.local to its IPv4 address ).
   * Camera module / webcam for video and a headset with a microphone for the Raspberry Pi.
   * Raspbian Jessie / Wheezy installed on the Raspberry Pi.
+  * A power source of some kind, this is intended to be portable ( PoE / a power bank capable of > 2A output ).
   * SSH needs to be enabled on the Raspberry Pi for a static IP to be set using *startstream.py*.
 
 ## Steps:
@@ -48,4 +49,4 @@ This implementation only works over LAN. Using services like [weaved](https://ww
     ```shell
    python startstream.py
    ```
-  Simply follow the on-screen menu to start the stream or set a static IP.
+  Simply follow the on-screen menu to start the stream or set a static IP ( **Not permanent, the Pi will not retain the IP on power loss** *This just allows the Pi to listen on more than one IPv4 address. Therefore allowing you to set and know the IP address before-hand. i.e. you can set an IP to listen on before you even connect to a network and once you do connect to it the Pi will listen on a pre-set IPv4 address, allowing you to connect to it and stream from the pre-set IP.* ).
