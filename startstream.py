@@ -32,7 +32,7 @@ def start_stream():
 	""" opens the stream url in a browser """
 	ip = get_raspi_IP()
 	url = "https://" + ip + ":8080/stream/webrtc"
-	print("Opening stream in browser at",url,'\nPLEASE ACCEPT THE CERTIFICATE TO VIEW THE STREAM')
+	print("Opening stream in browser at",url,'\nPlease accept the self-signed ceritficate to view the stream.')
 	webbrowser.open(url, new=2,autoraise=True)
 
 def set_static_ip():
@@ -44,16 +44,16 @@ def set_static_ip():
 	static_ip, subnet = input("Enter the static IPv4 address in the format xxx.xxx.xxx.xxx/yy where yy is the subnet mask.\ne.g 192.168.0.1/24\n: ").split('/')
 
 	pi_ip = get_raspi_IP()
-	print("setting static ip of", static_ip, "on Raspi using ip of",pi_ip,"over ssh.")
+	print("Trying to set static ip of", static_ip, "on Raspi using ip of",pi_ip,"over ssh.")
 
 	# if command executed successfully then write it to a textfile.
 	if os.system("ssh pi@" + pi_ip + " sudo ip address add " + static_ip + "/" + subnet  + " dev " + interface) == 0:
-		print("Successfully added static IP, storing in a text file. The static IP will be lost when the Pi reboots.")
+		print("Successfully added ", static_ip, " to ",interface," on the Raspberry Pi. The static IP will be lost when the Pi reboots.", sep="")
 		file = open("static_ip.txt", 'w')
 		file.write(static_ip)
 		file.close()
 	else:
-		print("Error assigning static IP.")
+		print("Error SSH'ing static IP.\nPlease try again")
 	main()
 
 def get_raspi_IP():
