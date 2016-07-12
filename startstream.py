@@ -47,13 +47,13 @@ def set_static_ip():
 	print("Trying to set static ip of", static_ip, "on Raspi using ip of",pi_ip,"over ssh.")
 
 	# if command executed successfully then write it to a textfile.
-	if os.system("ssh pi@" + pi_ip + " sudo ip address add " + static_ip + "/" + subnet  + " dev " + interface) == 0:
-		print("Successfully added ", static_ip, " to ",interface," on the Raspberry Pi. The static IP will be lost when the Pi reboots.", sep="")
+	if os.system("ssh pi@" + pi_ip + " python /home/pi/set_static_ip.py " + static_ip + "/" + subnet + "#" + interface) == 0:
+		print("Successfully added ", static_ip, " to ",interface," on the Raspberry Pi.", sep="")
 		file = open("static_ip.txt", 'w')
-		file.write(static_ip)
+		file.write(static_ip+"/"+subnet+"#"+interface)
 		file.close()
 	else:
-		print("Error SSH'ing static IP.\nPlease try again")
+		print("Error SSH'ing, couldn't set static IP.\nPlease try again")
 	main()
 
 def get_raspi_IP():
@@ -61,9 +61,9 @@ def get_raspi_IP():
 	found, previous_static_ip = True, ""
 	try:
 		file = open("static_ip.txt", 'r')
-		previous_static_ip = file.readline()
-		if previous_static_ip == "":
-			found = False
+		ipseg, interface = file.readline().split("#")
+		previous_static_ip = ipseg.split("/")[0]
+		found = previous_static_ip != ""
 	except:
 		found = False
 	# First attempt. if pi is still accessible on the static IP found in the text file, use it.
@@ -86,17 +86,30 @@ def pingable(ip):
 	ping_str = "-n 1" if  platform.system().lower()=="windows" else "-c 1"	
 	return((subprocess.run("ping " + ping_str + " -w 2 " + ip, shell=True)).returncode == 0)
 
+def remove_static_entry():
+	try:
+		file = open("static_ip.txt", 'r+')
+		data = file.read()
+		found = data != ""			
+		file.write("")
+		file.close()
+	except:
+		found = False
+	if not found:
+		print("No static entry found.")
+		return
+	pi_ip = get_raspi_IP()
+	os.system("ssh pi@" + pi_ip + " rm /home/pi/static_ip.txt")
+	print("Previous static IP cleared.")
+
 def main():
-	choice = int(input("1) Set static IP for raspi\n2) Start stream\n3) Reset / delete previous static IP entry\n: "))
+	choice = int(input("----------------------------------\n1) Set static IP for raspi\n2) Start stream\n3) Reset / delete previous static IP entry\n: "))
 	if choice == 1:
 		set_static_ip()
 	elif choice == 2:
 		start_stream()
 	elif choice == 3:
-		file = open("static_ip.txt",'w')
-		file.write("")
-		file.close()
-		print("Previous static IP cleared.")
+		remove_static_entry()		
 	main()
 
 if __name__ == "__main__":

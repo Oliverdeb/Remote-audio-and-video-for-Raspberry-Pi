@@ -4,9 +4,22 @@ import subprocess
 import socket
 import time
 import re
+import os
 
 def main():
 	
+	# if the Pi was allocated a static IP, set it again
+	found = True
+	try:
+		file = open("/home/pi/static_ip.txt", 'r')
+		line = file.read()
+		found = line != ""
+	except:
+		found = False
+	if found:
+		ipseg, interface = line.split("#")
+		os.system("sudo ip address add " + ipseg + " dev " + interface)
+
 	# keep looping until Raspi has been allocated an IPv4 address
 	while True:
 		while not has_ipv4_address():	
