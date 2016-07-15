@@ -88,11 +88,11 @@ def pingable(ip):
 
 def remove_static_entry():
 	try:
-		file = open("static_ip.txt", 'r+')
+		file = open("static_ip.txt", "r")
+
 		data = file.read()
 		found = data != ""			
-		file.write("")
-		file.close()
+		os.system("rm static_ip.txt")
 	except:
 		found = False
 	if not found:
