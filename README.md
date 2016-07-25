@@ -44,4 +44,4 @@ This implementation only works over LAN. Using services like [weaved](https://ww
     ```shell
    python startstream.py
    ```
-  Simply follow the on-screen menu to start the stream or set a static IP ( **Not permanent, the Pi will not retain the IP on power loss** *This just allows the Pi to listen on more than one IPv4 address. Therefore allowing you to set and know the IP address before-hand. i.e. you can set an IP to listen on before you even connect to a network and once you do connect to it the Pi will listen on a pre-set IPv4 address, allowing you to connect to it and stream from the pre-set IP.* ).
+  Simply follow the on-screen menu to start the stream or set a static IP.
