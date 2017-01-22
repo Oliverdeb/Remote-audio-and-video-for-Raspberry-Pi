@@ -4,7 +4,7 @@ This project was completed during a 4-week internship.
 
 ## Aim
 
-To send and receive audio and video simultaneously from a Raspberry Pi using the Raspberry Pi camera module and a USB headset attached to the Pi ( all done by UV4L ). I was to implement a way to start the stream without knowing the IP of the Raspberry Pi before hand. 
+To send and receive audio and video simultaneously from a Raspberry Pi using the Raspberry Pi camera module and a USB headset attached to the Pi ( all done by UV4L ). I was required to implement a way to start the stream without knowing the IP of the Raspberry Pi before hand. 
 
 ## Gotcha
 
