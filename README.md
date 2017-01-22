@@ -8,7 +8,7 @@ To send and receive audio and video simultaneously from a Raspberry Pi using the
 
 ## Gotcha
 
-This implementation only works over LAN. Using services like [weaved](https://www.weaved.com/) or port-forwarding will get you going for internet streaming too - but beware *it is very bandwidth intensive*. You will have to play around with the fps and quality a fair amount to get a stable stream ( bandwidth dependent ).
+This implementation only works over LAN. Using services like [weaved](https://www.weaved.com/) or port-forwarding will get you going for internet streaming too - but beware, *it is very bandwidth intensive*. You will have to play around with the fps and video quality to have a stable stream ( bandwidth dependent ).
 
 ## Prerequisites:
   * Python 2.7 for *UDPmulticaster.py* on the Raspberry Pi.
